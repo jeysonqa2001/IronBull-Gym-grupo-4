@@ -6,6 +6,7 @@
   --accent: #c62f25;
 }
 
+
 :root[data-theme="dark"] {
   --bg: #141a24;
   --surface: #1d2634;
