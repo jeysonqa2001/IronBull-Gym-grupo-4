@@ -1,0 +1,84 @@
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --text: #161b24;
+  --line: #d5dae2;
+  --accent: #c62f25;
+}
+
+
+:root[data-theme="dark"] {
+  --bg: #141a24;
+  --surface: #1d2634;
+  --text: #eef0f3;
+  --line: #2d3949;
+  --accent: #e8483c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s, color 0.25s;
+}
+
+a { color: inherit; }
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: 0.02em;
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+.menu a {
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.menu a:hover { border-bottom-color: var(--accent); }
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-tema {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn-tema:hover { border-color: var(--accent); }
+
+.btn-menu { display: none; }
