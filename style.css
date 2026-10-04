@@ -635,3 +635,61 @@ a { color: inherit; }
     animation: none !important;
   }
 }
+
+/* =========================================================
+   11. BOTÓN FLOTANTE DE FACEBOOK
+   ========================================================= */
+.boton-facebook {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: #1877f2;
+  color: #ffffff;
+  box-shadow: var(--sombra-fuerte);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton-facebook svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.boton-facebook:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(24, 119, 242, 0.35);
+}
+
+.boton-instagram {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 5.25rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 107%,
+    #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: #ffffff;
+  box-shadow: var(--sombra-fuerte);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton-instagram svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.boton-instagram:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(214, 36, 159, 0.35);
+}
