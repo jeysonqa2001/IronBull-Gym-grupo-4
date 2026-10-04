@@ -148,3 +148,80 @@ tarjetas.forEach(function (tarjeta) {
 selectPlan.addEventListener("change", function () {
   marcarTarjeta(selectPlan.value);
 });
+
+
+/* =========================================================
+   5. VALIDACIÓN DEL FORMULARIO DE CONTACTO
+   ========================================================= */
+const formulario = document.getElementById("formContacto");
+const campoNombre = document.getElementById("nombre");
+const campoCorreo = document.getElementById("correo");
+const campoMensaje = document.getElementById("mensaje");
+const mensajeForm = document.getElementById("error");
+
+const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function marcarCampo(campo, conError) {
+  campo.classList.toggle("invalido", conError);
+  campo.setAttribute("aria-invalid", conError ? "true" : "false");
+}
+
+function validarFormulario() {
+  const errores = [];
+
+  const nombre = campoNombre.value.trim();
+  const correo = campoCorreo.value.trim();
+  const plan = selectPlan.value;
+  const mensaje = campoMensaje.value.trim();
+
+  if (nombre.length < 3) {
+    errores.push({ campo: campoNombre, texto: "• Escribe tu nombre (mínimo 3 letras)." });
+  }
+  if (!formatoCorreo.test(correo)) {
+    errores.push({ campo: campoCorreo, texto: "• Escribe un correo válido, por ejemplo: nombre@gmail.com" });
+  }
+  if (plan === "") {
+    errores.push({ campo: selectPlan, texto: "• Selecciona el plan que te interesa." });
+  }
+  if (mensaje.length < 10) {
+    errores.push({ campo: campoMensaje, texto: "• Cuéntanos tu objetivo (mínimo 10 caracteres)." });
+  }
+
+  return errores;
+}
+
+formulario.addEventListener("submit", function (evento) {
+  evento.preventDefault(); // evita que la página se recargue
+
+  [campoNombre, campoCorreo, selectPlan, campoMensaje].forEach(function (campo) {
+    marcarCampo(campo, false);
+  });
+
+  const errores = validarFormulario();
+
+  if (errores.length > 0) {
+    errores.forEach(function (error) {
+      marcarCampo(error.campo, true);
+    });
+    mensajeForm.classList.remove("exito");
+    mensajeForm.textContent = errores.map(function (error) { return error.texto; }).join("\n");
+    errores[0].campo.focus();
+    return;
+  }
+
+  // Todo correcto: mostramos un mensaje de éxito y limpiamos el formulario
+  const nombre = campoNombre.value.trim().split(" ")[0];
+  mensajeForm.classList.add("exito");
+  mensajeForm.textContent = "¡Gracias, " + nombre + "! Recibimos tu solicitud del plan " +
+    selectPlan.value + ". Te contactaremos pronto.";
+
+  formulario.reset();
+  marcarTarjeta("");
+});
+
+// Cuando el usuario corrige un campo, se le quita el color de error
+[campoNombre, campoCorreo, selectPlan, campoMensaje].forEach(function (campo) {
+  campo.addEventListener("input", function () {
+    marcarCampo(campo, false);
+  });
+});
