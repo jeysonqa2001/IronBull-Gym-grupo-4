@@ -225,3 +225,12 @@ formulario.addEventListener("submit", function (evento) {
     marcarCampo(campo, false);
   });
 });
+
+
+/* =========================================================
+   6. AÑO AUTOMÁTICO EN EL PIE DE PÁGINA
+   ========================================================= */
+const anio = document.getElementById("anio");
+if (anio) {
+  anio.textContent = new Date().getFullYear();
+}
